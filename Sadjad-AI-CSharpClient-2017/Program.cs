@@ -210,6 +210,22 @@ namespace ABlast
         }
         private Int32 Type;
         private X Content;
+
+        public Int32 GetType
+        {
+            get
+            {
+                return Type;
+            }
+        }
+
+        public X GetContent
+        {
+            get
+            {
+                return Content;
+            }
+        }
     }
 
     public class CellResource
@@ -246,6 +262,14 @@ namespace ABlast
             }
             this.Color = Color;
         }
+
+        public String GetColor
+        {
+            get
+            {
+                return Description;
+            }
+        }
     }
 
     public class Bomb : CellResource
@@ -269,6 +293,14 @@ namespace ABlast
             this.Direction = Direction;
         }
         private Int32 Direction;
+
+        public String GetDirection
+        {
+            get
+            {
+                return Description;
+            }
+        }
     }
 
     public class Laser : CellResource
@@ -295,6 +327,16 @@ namespace ABlast
                     break;
             }
             this.Color = Color;
+
+            
+        }
+
+        public String GetColor
+        {
+            get
+            {
+                return Description;
+            }
         }
     }
 
@@ -306,6 +348,14 @@ namespace ABlast
             this.LifeTime = LifeTime;
             Description = LifeTime.ToString();
         }
+
+        public Int32 GetLifeTime
+        {
+            get
+            {
+                return LifeTime;
+            }
+        }
     }
 
     public class Wood : CellResource
@@ -316,6 +366,14 @@ namespace ABlast
             this.LifeTime = LifeTime;
             Description = LifeTime.ToString();
         }
+
+        public Int32 GetLifeTime
+        {
+            get
+            {
+                return LifeTime;
+            }
+        }
     }
 
     public class Rock : CellResource
@@ -325,6 +383,14 @@ namespace ABlast
         {
             this.LifeTime = LifeTime;
             Description = LifeTime.ToString();
+        }
+
+        public Int32 GetLifeTime
+        {
+            get
+            {
+                return LifeTime;
+            }
         }
     }
 
@@ -339,6 +405,30 @@ namespace ABlast
             this.Score = Score;
             this.TurnNumber = TurnNumber;
             this.Map = Map;
+        }
+
+        public Int32 GetScore
+        {
+            get
+            {
+                return Score;
+            }
+        }
+
+        public Int32 GetTurnNumber
+        {
+            get
+            {
+                return TurnNumber;
+            }
+        }
+
+        public List<Object> GetMap
+        {
+            get
+            {
+                return Map;
+            }
         }
     }
 

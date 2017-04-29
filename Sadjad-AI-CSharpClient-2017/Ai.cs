@@ -8,10 +8,10 @@ namespace Sadjad_AI_CSharpClient_2017
 {
     class Ai
     {
-        public String ServerAdr = "http://localhost:5000/game";
+        public String ServerAdr = "http://keeg.ir:8898/game";
         public Int32 Token = 123;
 
-        public void doTurn(ref Int32[] touch)
+        public void doTurn(ref Int32[] touch, ABlast.Board Board)
         {
             Random rnd = new Random();
 

@@ -36,7 +36,7 @@ namespace Sadjad_AI_CSharpClient_2017
 
                         JArray AResource = JArray.Parse(OResource["data"].ToString());
 
-                        List<Object> Map = new List<Object>();
+                        List<ABlast.Cell> Map = new List<ABlast.Cell>();
 
                         foreach(var Items in AResource)
                         {
@@ -44,43 +44,36 @@ namespace Sadjad_AI_CSharpClient_2017
                             {
                                 if (Item["type"].ToString() == "black")
                                 {
-                                    ABlast.JailedBird JB = new ABlast.JailedBird((Int32)ABlast.ColorType.Black);
-                                    ABlast.Cell<ABlast.JailedBird> cell = new ABlast.Cell<ABlast.JailedBird>((Int32)ABlast.Type.JailedBird, JB);
+                                    ABlast.Cell cell = new ABlast.Cell((Int32)ABlast.Type.JailedBird, (Int32)ABlast.ColorType.Black, (Int32)ABlast.Direction.NoDirection, 0);
                                     Map.Add(cell);
                                 }
                                 else if (Item["type"].ToString() == "red")
                                 {
-                                    ABlast.JailedBird JB = new ABlast.JailedBird((Int32)ABlast.ColorType.Red);
-                                    ABlast.Cell<ABlast.JailedBird> cell = new ABlast.Cell<ABlast.JailedBird>((Int32)ABlast.Type.JailedBird, JB);
+                                    ABlast.Cell cell = new ABlast.Cell((Int32)ABlast.Type.JailedBird, (Int32)ABlast.ColorType.Red, (Int32)ABlast.Direction.NoDirection, 0);
                                     Map.Add(cell);
                                 }
                                 else if (Item["type"].ToString() == "green")
                                 {
-                                    ABlast.JailedBird JB = new ABlast.JailedBird((Int32)ABlast.ColorType.Green);
-                                    ABlast.Cell<ABlast.JailedBird> cell = new ABlast.Cell<ABlast.JailedBird>((Int32)ABlast.Type.JailedBird, JB);
+                                    ABlast.Cell cell = new ABlast.Cell((Int32)ABlast.Type.JailedBird, (Int32)ABlast.ColorType.Green, (Int32)ABlast.Direction.NoDirection, 0);
                                     Map.Add(cell);
                                 }
                                 else if (Item["type"].ToString() == "blue")
                                 {
-                                    ABlast.JailedBird JB = new ABlast.JailedBird((Int32)ABlast.ColorType.Blue);
-                                    ABlast.Cell<ABlast.JailedBird> cell = new ABlast.Cell<ABlast.JailedBird>((Int32)ABlast.Type.JailedBird, JB);
+                                    ABlast.Cell cell = new ABlast.Cell((Int32)ABlast.Type.JailedBird, (Int32)ABlast.ColorType.Blue, (Int32)ABlast.Direction.NoDirection, 0);
                                     Map.Add(cell);
                                 }
                                 else if (Item["type"].ToString() == "yellow")
                                 {
-                                    ABlast.JailedBird JB = new ABlast.JailedBird((Int32)ABlast.ColorType.Yellow);
-                                    ABlast.Cell<ABlast.JailedBird> cell = new ABlast.Cell<ABlast.JailedBird>((Int32)ABlast.Type.JailedBird, JB);
+                                    ABlast.Cell cell = new ABlast.Cell((Int32)ABlast.Type.JailedBird, (Int32)ABlast.ColorType.Yellow, (Int32)ABlast.Direction.NoDirection, 0);
                                     Map.Add(cell);
                                 }
                                 else if (Item["type"].ToString() == "bomb")
                                 {
-                                    ABlast.Bomb Bomb = new ABlast.Bomb();
-                                    ABlast.Cell<ABlast.Bomb> cell = new ABlast.Cell<ABlast.Bomb>((Int32)ABlast.Type.Bomb, Bomb);
+                                    ABlast.Cell cell = new ABlast.Cell((Int32)ABlast.Type.Bomb, (Int32)ABlast.ColorType.NoColor, (Int32)ABlast.Direction.NoDirection, 0);
                                     Map.Add(cell);
                                 }
                                 else if (Item["type"].ToString() == "laser")
                                 {
-                                    ABlast.Laser Laser;
                                     Int32 color = 0;
                                     switch (Item["color"].ToString())
                                     {
@@ -100,15 +93,11 @@ namespace Sadjad_AI_CSharpClient_2017
                                             color = (Int32)ABlast.ColorType.Black;
                                             break;
                                     }
-
-                                    Laser = new ABlast.Laser(color);
-
-                                    ABlast.Cell<ABlast.Laser> cell = new ABlast.Cell<ABlast.Laser>((Int32)ABlast.Type.Laser, Laser);
+                                    ABlast.Cell cell = new ABlast.Cell((Int32)ABlast.Type.Laser, (Int32)color, (Int32)ABlast.Direction.NoDirection, 0);
                                     Map.Add(cell);
                                 }
                                 else if (Item["type"].ToString() == "rocket")
                                 {
-                                    ABlast.Rocket Rocket;
                                     Int32 direction = 0;
                                     switch (Item["direction"].ToString())
                                     {
@@ -120,36 +109,22 @@ namespace Sadjad_AI_CSharpClient_2017
                                             break;
                                     }
 
-                                    Rocket = new ABlast.Rocket(direction);
-
-                                    ABlast.Cell<ABlast.Rocket> cell = new ABlast.Cell<ABlast.Rocket>((Int32)ABlast.Type.Rocket, Rocket);
+                                    ABlast.Cell cell = new ABlast.Cell((Int32)ABlast.Type.Rocket, (Int32)ABlast.ColorType.NoColor, (Int32)direction, 0);
                                     Map.Add(cell);
                                 }
                                 else if (Item["type"].ToString() == "glass")
                                 {
-                                        ABlast.Glass Glass;
-
-                                        Glass = new ABlast.Glass(Convert.ToInt32(Item["life_time"].ToString()));
-
-                                        ABlast.Cell<ABlast.Glass> cell = new ABlast.Cell<ABlast.Glass>((Int32)ABlast.Type.Glass, Glass);
-                                        Map.Add(cell);
-                                    }
+                                    ABlast.Cell cell = new ABlast.Cell((Int32)ABlast.Type.Glass, (Int32)ABlast.ColorType.NoColor, (Int32)ABlast.Direction.NoDirection, Convert.ToInt32(Item["life_time"].ToString()));
+                                    Map.Add(cell);
+                                }
                                 else if (Item["type"].ToString() == "wood")
                                 {
-                                    ABlast.Wood Wood;
-
-                                    Wood = new ABlast.Wood(Convert.ToInt32(Item["life_time"].ToString()));
-
-                                    ABlast.Cell<ABlast.Wood> cell = new ABlast.Cell<ABlast.Wood>((Int32)ABlast.Type.Wood, Wood);
+                                    ABlast.Cell cell = new ABlast.Cell((Int32)ABlast.Type.Wood, (Int32)ABlast.ColorType.NoColor, (Int32)ABlast.Direction.NoDirection, Convert.ToInt32(Item["life_time"].ToString()));
                                     Map.Add(cell);
                                 }
                                 else if (Item["type"].ToString() == "rock")
                                 {
-                                    ABlast.Rock Rock;
-
-                                    Rock = new ABlast.Rock(Convert.ToInt32(Item["life_time"].ToString()));
-
-                                    ABlast.Cell<ABlast.Rock> cell = new ABlast.Cell<ABlast.Rock>((Int32)ABlast.Type.Rock, Rock);
+                                    ABlast.Cell cell = new ABlast.Cell((Int32)ABlast.Type.Rock, (Int32)ABlast.ColorType.NoColor, (Int32)ABlast.Direction.NoDirection, Convert.ToInt32(Item["life_time"].ToString()));
                                     Map.Add(cell);
                                 }
                             }
@@ -188,6 +163,7 @@ namespace ABlast
 
     enum ColorType
     {
+        NoColor = 0,
         Red = 1,
         Blue = 2,
         Yellow = 3,
@@ -198,37 +174,128 @@ namespace ABlast
     enum Direction
     {
         VERTICAL = 0,
-        HORIZONTAL = 1
+        HORIZONTAL = 1,
+        NoDirection = 2
     }
 
-    public class Cell <X>
+    public class Cell
     {
-        public Cell(Int32 Type, X Object)
+        public Cell(Int32 Type, Int32 Direction, Int32 Color, Int32 LifeTime)
         {
             this.Type = Type;
-            this.Content = Object; 
+            this.Color = Color;
+            this.Direction = Direction;
+            this.LifeTime = LifeTime;
         }
         private Int32 Type;
-        private X Content;
+        private Int32 Direction;
+        private Int32 Color;
+        private Int32 LifeTime;
 
-        public Int32 GetType
+        //private X Content;
+
+        public String GetType
         {
             get
             {
-                return Type;
+                switch (Type)
+                {
+                    case 1:
+                        return "JailedBird";
+                        break;
+                    case 2:
+                        return "Bomb";
+                        break;
+                    case 3:
+                        return "Rocket";
+                        break;
+                    case 4:
+                        return "Laser";
+                        break;
+                    case 5:
+                        return "Glass";
+                        break;
+                    case 6:
+                        return "Wood";
+                        break;
+                    case 7:
+                        return "Rock";
+                        break;
+                    default:
+                        return "NoType";
+                        break;
+                }
+            }
+        }
+        public String GetDirection
+        {
+            get
+            {
+                switch (Direction)
+                {
+                    case 1:
+                        return "Horizontal";
+                        break;
+                    case 2:
+                        return "NoDirection";
+                        break;
+                    case 0:
+                        return "Vertical";
+                        break;
+                    default:
+                        return "Null";
+                        break;
+                }
+            }
+        }
+        public String GetColor
+        {
+            get
+            {
+                switch (Color)
+                {
+                    case 0:
+                        return "NoColor";
+                        break;
+                    case 1:
+                        return "Red";
+                        break;
+                    case 2:
+                        return "Blue";
+                        break;
+                    case 3:
+                        return "Yellow";
+                        break;
+                    case 4:
+                        return "Black";
+                        break;
+                    case 5:
+                        return "Green";
+                        break;
+                    default:
+                        return "Null";
+                        break;
+                }
+            }
+        }
+        public Int32 GetLifeTime
+        {
+            get
+            {
+                return LifeTime;
             }
         }
 
-        public X GetContent
+        /*public X GetContent
         {
             get
             {
                 return Content;
             }
-        }
+        }*/
     }
 
-    public class CellResource
+    /*public class CellResource
     {
         public CellResource()
         {
@@ -392,15 +459,15 @@ namespace ABlast
                 return LifeTime;
             }
         }
-    }
+    }*/
 
     public class Board
     {
         private Int32 Score;
         private Int32 TurnNumber;
-        private List<Object> Map;
+        private List<Cell> Map;
 
-        public Board(Int32 Score, Int32 TurnNumber, List<Object> Map)
+        public Board(Int32 Score, Int32 TurnNumber, List<Cell> Map)
         {
             this.Score = Score;
             this.TurnNumber = TurnNumber;
@@ -423,7 +490,7 @@ namespace ABlast
             }
         }
 
-        public List<Object> GetMap
+        public List<Cell> GetMap
         {
             get
             {

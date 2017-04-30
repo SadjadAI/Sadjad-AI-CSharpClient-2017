@@ -13,6 +13,7 @@ namespace Sadjad_AI_CSharpClient_2017
 
         public void doTurn(ref Int32[] touch, ABlast.Board Board)
         {
+            
             Random rnd = new Random();
 
             touch[0] = rnd.Next(0, 9);
